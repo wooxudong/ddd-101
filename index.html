@@ -137,43 +137,101 @@
             </section>
         </section>
 
-        <section>
+        <section data-background-color="#301b3f">
             <section>
-                <h1>How to implement it?</h1>
-            </section>
-            <section>
-                <img src="https://images.prismic.io/xudong-web/e6d30502-7ca5-48c2-a3a7-81997d5446c9_gatsby-runtime.png?auto=compress,format"/>
-            </section>
-            <section style="text-align: left;">
-                <h2>Why Gatsby ?</h2>
-                <p class="fragment">1. Server side rednering at <span class="fragment"><b>build time</b></span></p>
-                <p class="fragment">2. Route-based code splitting </p>
-                <p class="fragment">3. Mordern APIs </p>
-            </section>
-            <section style="text-align: left;">
-                <h2>Mordern APIs</h2>
-                <p class="fragment">1. IntersectionObserver </p>
-                <p class="fragment">2. link rel="prefetch" </p>
-                <p class="fragment">3. srcset </p>
-            </section>
-            <section style="text-align: left;">
-                <h2>Why Prismic ?</h2>
-                <p class="fragment">1. Headless CMS and easy to integrate with Gatsby</p>
-                <p class="fragment">2. Support Content Slicing</p>
-                <p class="fragment">3. Free for full features</p>
-            </section>
-            <section style="text-align: left;">
-                <h2>Why Netlify ?</h2>
-                <p class="fragment">1. Great for static sites generator</p>
-                <p class="fragment">2. Form support with no code</p>
-                <p class="fragment">3. Deploy previews</p>
-                <p class="fragment">4. Domain support with https</p>
+                <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Factory ?</h2>
+                <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #6c71c4;">an
+                    Factory is to provide a way to help create complex aggregates and to ensure the invariants for the client without exposing the concrete detailed objects to the client.
+                </p>
             </section>
             <section>
-                <h1>show me the code ?</h1>
+                <img src="https://images.prismic.io/xudong-web/c1202118-d593-4718-b6df-68656b600d66_DDD-9.jpg?auto=compress,format"/>
             </section>
-            <section>
-                <h3>Wait... Let's look at Prismic and Netlify first</h3>
+            <section style="text-align: left;">
+                <h3 style="font-family: Caveat, cursive">Graduation Service Example</h3>
+                <img src="https://images.prismic.io/xudong-web/4c316364-423f-4ef8-90df-9c269e81888d_DDD-10.jpg?auto=compress,format"/>
+            </section>
+
+            <section data-auto-animate>
+                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="5|10|11|12">
+                                <script type="text/template">
+                                public class StudentFactory {
+                                    private final static int DEFAULT_MAX_PER_TERM = 6;
+                                    private final static int DEFAULT_MAX_PER_DEGREE = 40;
+
+                                    public static Student create(String name, String majorName) {
+                                       Major major = new Major(majorName);
+                                       List<Module> coreModules = Collections.emptyList();
+                                       major.addCoreModules(coreModules);
+                                       Student student = new Student(name, major);
+                                       student.addTermPolicies(MaximumModulePerTerm.ofNewPolicy(DEFAULT_MAX_PER_TERM));
+                                       student.addDegreePolicies(MaximumModulePerDegree.ofNewPolicy(DEFAULT_MAX_PER_DEGREE));
+                                       student.addDegreePolicies(MajorQualifiedByCoreModules.ofNewPolicy(coreModules));
+                                       return student;
+                                    }
+                                }
+                                </script>
+						</code>
+						</pre>
+            </section>
+            <section style="text-align: left;">
+                <h3 style="font-family: Caveat, cursive">Intention Revealing Interface</h3>
+                <img src="https://images.prismic.io/xudong-web/d7990deb-cccf-4821-abce-c1e0162a4430_DDD-11.jpg?auto=compress,format"/>
+            </section>
+            <section data-auto-animate>
+                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Refactoring</h2>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-3|4|14|25|37|40">
+                                <script type="text/template">
+public interface ModulePolicy {
+   public boolean isSatisfiedBy(List<Module> modules);
+}
+public class MaximumModulePerTerm implements ModulePolicy {
+   ...
+   public static MaximumModulePerTerm ofNewPolicy(int maxModulesPerTerm) {
+       return new MaximumModulePerTerm(maxModulesPerTerm);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerTerm;
+   }
+}
+public class MaximumModulePerDegree implements ModulePolicy {
+   ...
+   public static MaximumModulePerDegree ofNewPolicy(int maxModulesPerDegree) {
+       return new MaximumModulePerDegree(maxModulesPerDegree);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerDegree;
+   }
+}
+
+public class MajorQualifiedByCoreModules implements ModulePolicy {
+   ...
+   public static MajorQualifiedByCoreModules ofNewPolicy(List<Module> coreModules){
+       return new MajorQualifiedByCoreModules(coreModules);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> taken) {
+       return taken.containsAll(coreModules);
+   }
+}
+...
+public void register(Module newModule) {
+   boolean isOkForCurrentTerm = termPolicies.stream().allMatch(activeModules::satisfyPolicy);
+   if (!isOkForCurrentTerm)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+   boolean isOkForDegree = degreePolicies.stream().allMatch(moduleHistory::satisfyPolicy);
+   if (!isOkForDegree)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+   activeModules.register(newModule);
+}
+                                </script>
+						</code>
+						</pre>
             </section>
         </section>
 
