@@ -1,96 +1,186 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<title>JAMstack: How to Build Your Own Website</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Domain Drive Design 101</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/custom.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<section>
-						<img src="https://images.prismic.io/xudong-web/aba04f51-31ea-4b5a-9ae4-497c3f899d14_jamstack-thumbnail.png?auto=compress,format" style="height: 300px;">
-						<h3>JAMstack: How to Build Your Own Website</h3>
-						<h5>By Wu Xudong | 9th Feb, 2021</h5>
-					</section>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+<div class="reveal" style="font-family: Caveat, cursive">
+    <div class="slides">
+        <section>
+            <section>
+                <h3 style="font-family: Caveat, cursive">Domain Drive Design 101</h3>
+                <p style="font-size: 36px;">by Priti Biyani & Wu Xudong</p>
+                <p style="font-size: 24px">24th April 2021</p>
+            </section>
 
-					<section data-background-iframe="https://wooxudong.com" data-background-interactive>
-						<div style="position: absolute; width: 40%; right: -150px; top: -300px; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
-							<h2>Who am I?</h2>
-							<p>I joined TW two weeks ago and now sit on the beach chilling...</p>
-							<p>Apart from coding, I am also a cinephile. I like to read books like literature, sci-fi or sociology</p>
-							<p>I also do sports. I play tennis, crossfit a few times a week.</p>
-						</div>
-					</section>
-				</section>
+            <section data-background-iframe="https://www.mentimeter.com/s/7c13738f6ae355e2d726a586c06b7e22/37536ea9e2b8"
+                     data-background-interactive>
+            </section>
+        </section>
 
-				<section>
-					<section>
-						<h1>What is JAMstack ?</h1>
-					</section>
-					<section>
-						<img src="https://images.prismic.io/xudong-web/9c4709c8-c06e-4ddd-a4b4-b014d075a4b6_jamstack.png?auto=compress,format" />
-					</section>
-					<section>
-						<img src="assets/jamstack.png" />
-					</section>
-				</section>
+        <section data-background-color="#536162">
+            <section>
+                <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Aggregate ?</h2>
+                <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">an
+                    Aggregate is a cluster of associated objects that we treat as a unit for the purpose of data
+                    changes.
+                </p>
+            </section>
+            <section>
+                <h2 style="font-family: Caveat, cursive">What for ?</h2>
+                <ol style="font-size: 48px">
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">Minimize the
+                        complexity of associate between models
+                    </li>
+                    <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Ensure some invariants are enforced
+                        across the objects
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <img src="https://images.prismic.io/xudong-web/b7e096f9-41f7-47ab-9d53-0661fb4a21ea_DDD-8.jpg?auto=compress,format"/>
+            </section>
+            <section>
+                <h4 style="font-family: Caveat, cursive">Invariants inside Student Aggregate?</h4>
+                <div style="font-size: 40px; margin-top: 40px; background-color: #0d99a5; border-radius: 5px; padding: 10px">
+                    <ol>
+                        <li class="fragment" style="margin-bottom: 25px;">
+                            A student should not take more than 6 modules for each term
+                        </li>
+                        <li class="fragment" >
+                            A student should not take more than 40 modules for the entire study
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section data-auto-animate>
+                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-5|7-10|12|18|29|32|39-43|45-50|52-59">
+                                <script type="text/template">
+                                public abstract class AggregateRoot<ID extends Identifier> implements Entity<ID> {
+                                   private final ID id;
+                                   protected AggregateRoot(ID id) { this.id = id; }
+                                   public ID getId() { return id; }
+                                }
 
-				<section>
-					<section>
-						<h1>How to implement it?</h1>
-					</section>
-					<section>
-						<img src="https://images.prismic.io/xudong-web/e6d30502-7ca5-48c2-a3a7-81997d5446c9_gatsby-runtime.png?auto=compress,format" />
-					</section>
-					<section style="text-align: left;">
-						<h2>Why Gatsby ?</h2>
-						<p class="fragment">1. Server side rednering at <span class="fragment"><b>build time</b></span></p>
-						<p class="fragment">2. Route-based code splitting </p>
-						<p class="fragment">3. Mordern APIs </p>
-					</section>
-					<section style="text-align: left;">
-						<h2>Mordern APIs</h2>
-							<p class="fragment">1. IntersectionObserver </p>
-							<p class="fragment">2. link rel="prefetch" </p>
-							<p class="fragment">3. srcset </p>
-					</section>
-					<section style="text-align: left;">
-						<h2>Why Prismic ?</h2>
-						<p class="fragment">1. Headless CMS and easy to integrate with Gatsby</p>
-						<p class="fragment">2. Support Content Slicing</p>
-						<p class="fragment">3. Free for full features</p>	
-					</section>
-					<section style="text-align: left;">
-						<h2>Why Netlify ?</h2>
-						<p class="fragment">1. Great for static sites generator</p>
-						<p class="fragment">2. Form support with no code</p>
-						<p class="fragment">3. Deploy previews</p>	
-						<p class="fragment">4. Domain support with https</p>	
-					</section>
-					<section>
-						<h1>show me the code ?</h1>
-					</section>
-					<section>
-						<h3>Wait... Let's look at Prismic and Netlify first</h3>
-					</section>
-				</section>
-					
-				<section>
-					<section data-auto-animate>
-						<h2 data-id="code-title">Gatsby Project Structure</h2>
-						<pre data-id="code-animation">
+                                public class StudentId implements  Identifier {
+                                   private final String id;
+                                   public StudentId() { id = UUID.randomUUID().toString(); }
+                                }
+
+                                public class Student extends AggregateRoot<StudentId> {
+                                   private final ModuleHistory moduleHistory;
+                                   private final ActiveModules activeModules;
+                                   private final Major major;
+
+                                   public Student(Major major) {
+                                       super(new StudentId());
+                                       this.moduleHistory = new ModuleHistory();
+                                       this.activeModules = new ActiveModules();
+                                       this.major = major;
+                                   }
+
+                                   public StudentId getStudentId() { return getId(); }
+
+                                   public void register(Module newModule){
+                                       int currentEnrolled = activeModules.getNumOfCurrentEnrolledModules();
+                                       int taken = moduleHistory.getNumOfModulesTaken();
+                                       if (taken + 1 > 40) {
+                                           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+                                       }
+                                       if (currentEnrolled + 1 > 6){
+                                           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+                                       }
+                                       activeModules.register(newModule);
+                                   }
+                                }
+
+                                public class ModuleHistory implements ValueObject {
+                                   private final Map<String, List<Module>> moduleHistories;
+                                   public ModuleHistory() { this.moduleHistories = new HashMap<>(); }
+                                   public int getNumOfModulesTaken() { return moduleHistories.size(); }
+                                }
+
+                                public class ActiveModules implements ValueObject {
+                                   private final List<Module> modules;
+                                   public ActiveModules() { modules = new ArrayList<>(); }
+                                   public int getNumOfCurrentEnrolledModules() { return modules.size(); }
+                                   public void register(Module newModule) { modules.add(newModule); }
+                                }
+
+                                public class Major implements ValueObject {
+                                   private final List<Module> coreModules;
+                                   private final String name;
+                                   public Major(List<Module> coreModules, String name) {
+                                       this.coreModules = coreModules;
+                                       this.name = name;
+                                   }
+                                }
+                                </script>
+						</code>
+						</pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>How to implement it?</h1>
+            </section>
+            <section>
+                <img src="https://images.prismic.io/xudong-web/e6d30502-7ca5-48c2-a3a7-81997d5446c9_gatsby-runtime.png?auto=compress,format"/>
+            </section>
+            <section style="text-align: left;">
+                <h2>Why Gatsby ?</h2>
+                <p class="fragment">1. Server side rednering at <span class="fragment"><b>build time</b></span></p>
+                <p class="fragment">2. Route-based code splitting </p>
+                <p class="fragment">3. Mordern APIs </p>
+            </section>
+            <section style="text-align: left;">
+                <h2>Mordern APIs</h2>
+                <p class="fragment">1. IntersectionObserver </p>
+                <p class="fragment">2. link rel="prefetch" </p>
+                <p class="fragment">3. srcset </p>
+            </section>
+            <section style="text-align: left;">
+                <h2>Why Prismic ?</h2>
+                <p class="fragment">1. Headless CMS and easy to integrate with Gatsby</p>
+                <p class="fragment">2. Support Content Slicing</p>
+                <p class="fragment">3. Free for full features</p>
+            </section>
+            <section style="text-align: left;">
+                <h2>Why Netlify ?</h2>
+                <p class="fragment">1. Great for static sites generator</p>
+                <p class="fragment">2. Form support with no code</p>
+                <p class="fragment">3. Deploy previews</p>
+                <p class="fragment">4. Domain support with https</p>
+            </section>
+            <section>
+                <h1>show me the code ?</h1>
+            </section>
+            <section>
+                <h3>Wait... Let's look at Prismic and Netlify first</h3>
+            </section>
+        </section>
+
+        <section>
+            <section data-auto-animate>
+                <h2 data-id="code-title">Gatsby Project Structure</h2>
+                <pre data-id="code-animation">
 							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="6|10">
 								/
 								|-- /.cache
@@ -107,11 +197,12 @@
 								|-- gatsby-browser.js
 						</code>
 						</pre>
-				</section>
-					<section data-auto-animate>
-							<h3 data-id="code-title">Connect Gatsby to Prismic in gatsby-config.js</h3>
-							<pre data-id="code-animation">
-								<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="2|4-5|9-12|16-19">
+            </section>
+            <section data-auto-animate>
+                <h3 data-id="code-title">Connect Gatsby to Prismic in gatsby-config.js</h3>
+                <pre data-id="code-animation">
+								<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim
+                                      data-line-numbers="2|4-5|9-12|16-19">
 								{
 									resolve: `gatsby-source-prismic-graphql`,
 									options: {
@@ -139,164 +230,346 @@
 								}
 							</code>
 							</pre>
-					</section>
-					
-					<section data-auto-animate>
-						<h2 data-id="code-title">Get prismic data through graphql</h2>
-						<pre data-id="code-animation">
-							<code class="hljs" style="font-size:15px;tab-size: 15px;"  data-trim data-line-numbers="2|4|7|22|28|35"><script type="text/template">
-								import React, { useEffect, useState } from 'react';
-								import { graphql } from 'gatsby';	
+            </section>
 
-								const BlogPage = ({ data: { site, prismic }, classes }) => {
-									...
-								}
-								export const pageQuery = graphql`
-										query indexPageQuery {
-										  prismic {
-												allBlogposts(uid: $uid) {
-													edges {
-														node {
-															title
-															author
-															publish_date
-															tags {
-																tag
-															}
-															abstract
-															thumbnail
-															body {
-																... on PRISMIC_BlogpostBodyRich_text {
-																	type
-																	primary {
-																		paragraph
-																	}
-																}
-																... on PRISMIC_BlogpostBodyCode {
-																	type
-																	label
-																	primary {
-																		code
-																	}
-																}
-																... on PRISMIC_BlogpostBodyQuote {
-																	type
-																	primary {
-																		quote
-																		type
-																	}
-																}
-																... on PRISMIC_BlogpostBodyMedia {
-																	type
-																	primary {
-																		artist
-																		title1
-																		review
-																	}
-																}
-												...
-									`;
+            <section data-auto-animate>
+                <h2 data-id="code-title">Get prismic data through graphql</h2>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px;" data-trim
+                                  data-line-numbers="2|4|7|22|28|35"><script type="text/template">
+								import React, { useEffect, useState } from 'react';
+                                import { graphql } from 'gatsby';
+
+                                const BlogPage = ({ data: { site, prismic }, classes }) => {
+                                ...
+                                }
+                                export const pageQuery = graphql`
+                                query indexPageQuery {
+                                prismic {
+                                allBlogposts(uid: $uid) {
+                                edges {
+                                node {
+                                title
+                                author
+                                publish_date
+                                tags {
+                                tag
+                                }
+                                abstract
+                                thumbnail
+                                body {
+                                ... on PRISMIC_BlogpostBodyRich_text {
+                                type
+                                primary {
+                                paragraph
+                                }
+                                }
+                                ... on PRISMIC_BlogpostBodyCode {
+                                type
+                                label
+                                primary {
+                                code
+                                }
+                                }
+                                ... on PRISMIC_BlogpostBodyQuote {
+                                type
+                                primary {
+                                quote
+                                type
+                                }
+                                }
+                                ... on PRISMIC_BlogpostBodyMedia {
+                                type
+                                primary {
+                                artist
+                                title1
+                                review
+                                }
+                                }
+                                ...
+                                `;
 						</script>
 						</code>
 						</pre>
-					</section>
+            </section>
 
-					<section>
-						<h3 data-id="code-title">Create dynamic content through Prismic Slice</h3>
-						<pre data-id="code-animation">
-							<code class="hljs" style="font-size:15px;tab-size: 15px;" data-trim data-line-numbers="6|7|9|13|15|22">
+            <section>
+                <h3 data-id="code-title">Create dynamic content through Prismic Slice</h3>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px;" data-trim
+                                  data-line-numbers="6|7|9|13|15|22">
 								<script type="text/template">
 									export default ({ body }) => {
-										return (
-											<>
-												{body &&
-													body.map((bodyContent, i) => {
-														switch (bodyContent.type) {
-															case CODE:
-																return <CodeSlice key={i} content={bodyContent.primary.code} />;
-															case RICH_TEXT:
-																return (
-																	<ParagraphSlice paragraph={bodyContent.primary.paragraph} />
-																);
-															case TABLEAU:
-																return <TableauReport url={bodyContent.primary.link} />;
-															case QUOTE:
-																return (
-																	<Quote
-																		quote={bodyContent.primary.quote}
-																		type={bodyContent.primary.type}
-																	/>
-																);
-															case MEDIA:
-																return <Media {...bodyContent.primary} />;
-															default:
-																return null;
-														}
-													})}
-											</>
-										);
-									};
+                                    return (
+                                    <>
+                                    {body &&
+                                    body.map((bodyContent, i) => {
+                                    switch (bodyContent.type) {
+                                    case CODE:
+                                    return
+                                    <CodeSlice key={i} content={bodyContent.primary.code}/>;
+                                    case RICH_TEXT:
+                                    return (
+                                    <ParagraphSlice paragraph={bodyContent.primary.paragraph}/>
+                                    );
+                                    case TABLEAU:
+                                    return
+                                    <TableauReport url={bodyContent.primary.link}/>;
+                                    case QUOTE:
+                                    return (
+                                    <Quote
+                                            quote={bodyContent.primary.quote}
+                                            type={bodyContent.primary.type}
+                                    />
+                                    );
+                                    case MEDIA:
+                                    return
+                                    <Media {...bodyContent.primary}/>;
+                                    default:
+                                    return null;
+                                    }
+                                    })}
+                                    </>
+                                    );
+                                    };
 								</script>
 						</code>
 						</pre>
-					</section>
+            </section>
 
-					<section>
-						<h2 data-id="code-title">Netlify Form function with No Code</h2>
-						<pre data-id="code-animation">
-							<code class="hljs" style="font-size:15px;tab-size: 15px;" data-trim data-line-numbers="1|3-5">
+            <section>
+                <h2 data-id="code-title">Netlify Form function with No Code</h2>
+                <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px;" data-trim
+                                  data-line-numbers="1|3-5">
 								<script type="text/template">
-									<form name="contact" method="POST" data-netlify-honeypot="bot-field" data-netlify="true">
-										<input type="hidden" name="form-name" value="contact" />
+									<form name="contact" method="POST" data-netlify-honeypot="bot-field"
+                                          data-netlify="true">
+										<input type="hidden" name="form-name" value="contact"/>
 										<div className={classes.hidden}>
-											<label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+											<label>Don’t fill this out if you're human: <input
+                                                    name="bot-field"/></label>
 										</div>
 										<div className={classes.fields}>
 											<div className={`${classes.field} ${classes.half}`}>
 												<Label htmlFor="name">Name</Label>
-												<InputText type="text" name="name" id="name" />
+												<InputText type="text" name="name" id="name"/>
 											</div>
 											<div className={`${classes.field} ${classes.half}`}>
 												<Label htmlFor="email">Email</Label>
-												<InputText type="text" name="email" id="email" />
+												<InputText type="text" name="email" id="email"/>
 											</div>
 											<div className={classes.field}>
 												<Label htmlFor="message">Message</Label>
-												<Textarea name="message" id="message" rows="4" />
+												<Textarea name="message" id="message" rows="4"/>
 											</div>
 										</div>
 										...
 								</script>
 						</code>
-						</pre>	
-					</section>
-				</section>
-			
-				<section>
-					<h1> Any Questions? </h1>
-				</section>
-			</div>
-		</div>
+						</pre>
+            </section>
+        </section>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/zoom/zoom.js"></script>
-		<script src="plugin/search/search.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				center: true,
-				hash: true,
+        <section>
+            <h1> Any Questions? </h1>
+        </section>
+    </div>
+    <canvas id="canvas" style="z-index: -1"></canvas>
+    <div style="position:fixed; top: 15px; right: 20px; font-size: 12px">animation by <a
+            href="https://codepen.io/jackrugile/pen/bdwvMo">Jack Rugile</a></div>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
-			});
-		</script>
-	</body>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/search/search.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+    });
+</script>
+
+<script>
+    var canvas,
+        ctx,
+        width,
+        height,
+        size,
+        lines,
+        tick;
+
+    function line() {
+        this.path = [];
+        this.speed = rand(10, 20);
+        this.count = randInt(10, 30);
+        this.x = width / 2, +1;
+        this.y = height / 2 + 1;
+        this.target = {x: width / 2, y: height / 2};
+        this.dist = 0;
+        this.angle = 0;
+        this.hue = tick / 5;
+        this.life = 1;
+        this.updateAngle();
+        this.updateDist();
+    }
+
+    line.prototype.step = function (i) {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+
+        this.updateDist();
+
+        if (this.dist < this.speed) {
+            this.x = this.target.x;
+            this.y = this.target.y;
+            this.changeTarget();
+        }
+
+        this.path.push({x: this.x, y: this.y});
+        if (this.path.length > this.count) {
+            this.path.shift();
+        }
+
+        this.life -= 0.001;
+
+        if (this.life <= 0) {
+            this.path = null;
+            lines.splice(i, 1);
+        }
+    };
+
+    line.prototype.updateDist = function () {
+        var dx = this.target.x - this.x,
+            dy = this.target.y - this.y;
+        this.dist = Math.sqrt(dx * dx + dy * dy);
+    }
+
+    line.prototype.updateAngle = function () {
+        var dx = this.target.x - this.x,
+            dy = this.target.y - this.y;
+        this.angle = Math.atan2(dy, dx);
+    }
+
+    line.prototype.changeTarget = function () {
+        var randStart = randInt(0, 3);
+        switch (randStart) {
+            case 0: // up
+                this.target.y = this.y - size;
+                break;
+            case 1: // right
+                this.target.x = this.x + size;
+                break;
+            case 2: // down
+                this.target.y = this.y + size;
+                break;
+            case 3: // left
+                this.target.x = this.x - size;
+        }
+        this.updateAngle();
+    };
+
+    line.prototype.draw = function (i) {
+        ctx.beginPath();
+        var rando = rand(0, 10);
+        for (var j = 0, length = this.path.length; j < length; j++) {
+            ctx[(j === 0) ? 'moveTo' : 'lineTo'](this.path[j].x + rand(-rando, rando), this.path[j].y + rand(-rando, rando));
+        }
+        ctx.strokeStyle = 'hsla(' + rand(this.hue, this.hue + 30) + ', 80%, 55%, ' + (this.life / 3) + ')';
+        ctx.lineWidth = rand(0.1, 2);
+        ctx.stroke();
+    };
+
+    function rand(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    function randInt(min, max) {
+        return Math.floor(min + Math.random() * (max - min + 1));
+    };
+
+    function init() {
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
+        size = 30;
+        lines = [];
+        reset();
+        loop();
+    }
+
+    function reset() {
+        width = Math.ceil(window.innerWidth / 2) * 2;
+        height = Math.ceil(window.innerHeight / 2) * 2;
+        tick = 0;
+
+        lines.length = 0;
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    function create() {
+        if (tick % 10 === 0) {
+            lines.push(new line());
+        }
+    }
+
+    function step() {
+        var i = lines.length;
+        while (i--) {
+            lines[i].step(i);
+        }
+    }
+
+    function clear() {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1';
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'lighter';
+    }
+
+    function draw() {
+        ctx.save();
+        ctx.translate(width / 2, height / 2);
+        ctx.rotate(tick * 0.001);
+        var scale = 0.8 + Math.cos(tick * 0.02) * 0.2;
+        ctx.scale(scale, scale);
+        ctx.translate(-width / 2, -height / 2);
+        var i = lines.length;
+        while (i--) {
+            lines[i].draw(i);
+        }
+        ctx.restore();
+    }
+
+    function loop() {
+        requestAnimationFrame(loop);
+        create();
+        step();
+        clear();
+        draw();
+        tick++;
+    }
+
+    function onresize() {
+        reset();
+    }
+
+    window.addEventListener('resize', onresize);
+
+    init();
+</script>
+
+</body>
 </html>
