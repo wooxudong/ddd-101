@@ -137,7 +137,7 @@
 
             <section data-background-color="#536162">
                 <section>
-                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Entity</h2>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">what is Entity? </h2>
                     <div
                         style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
                         <li>Has unique identity</li>
@@ -175,7 +175,7 @@
                                         }
                                     }
                                     
-                                    public class Student extends Entity<StudentId> {
+                                    public class Student implements Entity<StudentId> {
                                         private final String name;
                                         private final Email email;
 
@@ -193,6 +193,105 @@
 						</pre>
                 </section>
             </section>
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">what is Value Object?</h2>
+                    <div
+                        style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        No conceptual identity. These objects describe some of the characterisitcs.
+                    </div>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">Value objects </h2>
+                    <ol style="font-size: 48px">
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                            Identityless in given context
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            The equality is based on the attribute rather than an identity.
+                        </li>
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            Value object can reference entity or other value objects.
+                        </li>
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            Value objects are Immutable.
+                        </li>
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            Behaviour rich
+                        </li>
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            Self validating
+                        </li>
+                    </ol>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px"  data-trim data-line-numbers="1-2|4-12|14|17">
+                                <script type="text/template">
+                                    public interface ValueObject {
+                                    }
+
+                                    public class PhoneNumber implements ValueObject {
+                                        private final String number;
+                                    
+                                        public PhoneNumber(string number)
+                                        {
+                                            this.number = number;
+                                        }
+                                    }
+                                    
+                                    public class PhoneBook implements ValueObject{
+                                        private PhoneNumber workNumber; 
+                                        private PhoneNumber mobileNumber; 
+                                        private PhoneNumber homeNumber; 
+
+                                        public PhoneBook(PhoneNumber workNumber, PhoneNumber mobileNumber, PhoneNumber homeNumber){
+                                            //If there are respective contrains, related to each number and digits, we could create value object 
+                                            //for those. 
+                                            this.workNumber   = workNumber;
+                                            this.mobileNumber = mobileNumber;
+                                            this.homeNumber   = homeNumber;
+                                        }
+                                    }
+                                </script>
+						</code>
+						</pre>
+                </section>
+            </section>
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">How to identify entity and value
+                        objects?</h2>
+                </section>
+
+                <section
+                    data-background-iframe="https://www.mentimeter.com/s/7c13738f6ae355e2d726a586c06b7e22/37536ea9e2b8"
+                    data-background-interactive>
+                    <!-- TODO  | Priti | Need to add poll for the: Is Address is value object or entity? -->
+                </section>
+
+
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> What is Address? </h2>
+                    <ol style="font-size: 48px">
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                            In given context, if object has identity, it's an entity otherwise it is behavior rich value
+                            object
+                        </li>
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                            If given context is Student, address is Value object. </br>
+                            But if it's electricity, it is an Entity!
+                        </li>
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                            Equality operation for both varies. 
+                        </li>
+                    </ol>
+                </section>
+            </section>
+
+
 
             <section data-background-color="#536162">
                 <section>
