@@ -106,7 +106,91 @@
                 </section>
 
                 <section>
-                    <h2 style="font-family: Caveat, cursive"> It's a continuous process, One lanugage for everyone in the team.</h2>
+                    <h2 style="font-family: Caveat, cursive"> It's a continuous process, One lanugage for everyone in
+                        the team.</h2>
+                </section>
+            </section>
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Layered Architecture</h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                    </p>
+                </section>
+
+            </section>
+
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Use case</h2>
+                    <div
+                        style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        <li>Student can apply for the courses and they will be alloted to those if there is eligibility
+                            criteria met for the same.</li>
+                        <li>Every course has a timeslot. </li>
+                        <li>Teacher can take multiple courses. </li>
+                    </div>
+                </section>
+            </section>
+
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Entity</h2>
+                    <div
+                        style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        <li>Has unique identity</li>
+                        <li>Has continuity: Has life cycle </li>
+                    </div>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">How to identify Entity? </h2>
+                    <ol style="font-size: 48px">
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                            Listen to what domain expert says, if there is an emphasis on identification of anything,
+                            its an entity
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">
+                            "Student's application for course is submitted", "The application is approved", "The
+                            application is rejected"
+                        </li>
+                    </ol>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-2|4-5|7|10|15-26">
+                                <script type="text/template">
+                                    public interface Identifier {
+                                    }
+                                    
+                                    public interface Entity<ID extends Identifier> {
+                                    }
+
+                                    public class StudentId implements Identifier {
+                                        private final String Id;
+                                    
+                                        public StudentId(String id) {
+                                            id = id;
+                                        }
+                                    }
+                                    
+                                    public class Student extends Entity<StudentId> {
+                                        private final String name;
+                                        private final Email email;
+
+                                        private final Courses courses;
+
+                                        public Student(String name, Email email) {
+                                            super(new StudentId());
+                                            this.name = name ; 
+                                            this.email = email; 
+                                        }
+                                    }
+                                    
+                                </script>
+						</code>
+						</pre>
                 </section>
             </section>
 
