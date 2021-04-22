@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,59 +18,140 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 </head>
+
 <body>
-<div class="reveal" style="font-family: Caveat, cursive">
-    <div class="slides">
-        <section>
+    <div class="reveal" style="font-family: Caveat, cursive">
+        <div class="slides">
             <section>
-                <h3 style="font-family: Caveat, cursive">Domain Drive Design 101</h3>
-                <p style="font-size: 36px;">by Priti Biyani & Wu Xudong</p>
-                <p style="font-size: 24px">24th April 2021</p>
+                <section>
+                    <h3 style="font-family: Caveat, cursive">Domain Drive Design 101</h3>
+                    <p style="font-size: 36px;">by Priti Biyani & Wu Xudong</p>
+                    <p style="font-size: 24px">24th April 2021</p>
+                </section>
+
+                <section
+                    data-background-iframe="https://www.mentimeter.com/s/7c13738f6ae355e2d726a586c06b7e22/37536ea9e2b8"
+                    data-background-interactive>
+                </section>
             </section>
 
-            <section data-background-iframe="https://www.mentimeter.com/s/7c13738f6ae355e2d726a586c06b7e22/37536ea9e2b8"
-                     data-background-interactive>
-            </section>
-        </section>
-
-        <section data-background-color="#536162">
-            <section>
-                <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Aggregate ?</h2>
-                <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">an
-                    Aggregate is a cluster of associated objects that we treat as a unit for the purpose of data
-                    changes.
-                </p>
-            </section>
-            <section>
-                <h2 style="font-family: Caveat, cursive">What for ?</h2>
-                <ol style="font-size: 48px">
-                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">Minimize the
-                        complexity of associate between models
-                    </li>
-                    <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Ensure some invariants are enforced
-                        across the objects
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <img src="https://images.prismic.io/xudong-web/b7e096f9-41f7-47ab-9d53-0661fb4a21ea_DDD-8.jpg?auto=compress,format"/>
-            </section>
-            <section>
-                <h4 style="font-family: Caveat, cursive">Invariants inside Student Aggregate?</h4>
-                <div style="font-size: 40px; margin-top: 40px; background-color: #0d99a5; border-radius: 5px; padding: 10px">
-                    <ol>
-                        <li class="fragment" style="margin-bottom: 25px;">
-                            A student should not take more than 6 modules for each term
-                        </li>
-                        <li class="fragment" >
-                            A student should not take more than 40 modules for the entire study
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Ubiquitous Language</h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        a
+                        Common Language for everyone based on Domain Model
+                    </p>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">Why we need it ?</h2>
+                    <ol style="font-size: 48px">
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">Domain expert
+                            uses their jargon, whereas developers uses their own jargon
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Translation blunts the
+                            communication and thus pollutes the purpose and thus code.
                         </li>
                     </ol>
-                </div>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">How is it different than usual IPM meetings with
+                        stakeholders?</h2>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
+                        1. As soon as person logins, on the right side they should see no claim left.
+                        2. But if we go in understanding why of that, we come to know the use case and thus we learn
+                        more about the domain.
+                    </li>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> How build common language?</h2>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">By asking
+                        powerful questions to domain experts - Greg Young.
+                    <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Any new thing we learnt form experts
+                        should be followed by update in UL.
+                    </li>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> should be used
+                        at every other places - Diagrams, Wiki pages, documentation, user stories, verbal communication
+                        and ofcourse code!
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> should be used
+                        by everyone - Business owner, designed, BA, DEV, PM, QA, stakeholders, domain experts and so
+                        on..
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> How build common language?</h2>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">Knowledge
+                        crunching
+                        session
+                    <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Sketching
+                    </li>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> Rapid
+                        prototyping
+                    </li>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> Discovery </li>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">How build common language?</h2>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">By asking
+                        powerful
+                        questions to domain experts - Greg Young.
+                    <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Any new thing we learnt form experts
+                        should be followed by update in UL.
+                    </li>
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> should be used
+                        at
+                        every other places - Diagrams, Wiki pages, documentation, user stories, verbal communication and
+                        ofcourse code!
+                    <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;"> should be used
+                        by
+                        everyone - Business owner, designed, BA, DEV, PM, QA, stakeholders, domain experts and so on..
+                </section>
+
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> It's a continuous process, One lanugage for everyone in the team.</h2>
+                </section>
             </section>
-            <section data-auto-animate>
-                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
-                <pre data-id="code-animation">
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Aggregate ?</h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        an
+                        Aggregate is a cluster of associated objects that we treat as a unit for the purpose of data
+                        changes.
+                    </p>
+                </section>
+                <section>
+                    <h2 style="font-family: Caveat, cursive">What for ?</h2>
+                    <ol style="font-size: 48px">
+                        <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">Minimize the
+                            complexity of associate between models
+                        </li>
+                        <li class="fragment" style="border-bottom: 2px solid #0d99a5;">Ensure some invariants are
+                            enforced
+                            across the objects
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <img
+                        src="https://images.prismic.io/xudong-web/b7e096f9-41f7-47ab-9d53-0661fb4a21ea_DDD-8.jpg?auto=compress,format" />
+                </section>
+                <section>
+                    <h4 style="font-family: Caveat, cursive">Invariants inside Student Aggregate?</h4>
+                    <div
+                        style="font-size: 40px; margin-top: 40px; background-color: #0d99a5; border-radius: 5px; padding: 10px">
+                        <ol>
+                            <li class="fragment" style="margin-bottom: 25px;">
+                                A student should not take more than 6 modules for each term
+                            </li>
+                            <li class="fragment">
+                                A student should not take more than 40 modules for the entire study
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
 							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-5|7-10|12|18|29|32|39-43|45-50|52-59">
                                 <script type="text/template">
                                 public abstract class AggregateRoot<ID extends Identifier> implements Entity<ID> {
@@ -134,27 +216,31 @@
                                 </script>
 						</code>
 						</pre>
-            </section>
-        </section>
-
-        <section data-background-color="#301b3f">
-            <section>
-                <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Factory ?</h2>
-                <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #6c71c4;">an
-                    Factory is to provide a way to help create complex aggregates and to ensure the invariants for the client without exposing the concrete detailed objects to the client.
-                </p>
-            </section>
-            <section>
-                <img src="https://images.prismic.io/xudong-web/c1202118-d593-4718-b6df-68656b600d66_DDD-9.jpg?auto=compress,format"/>
-            </section>
-            <section style="text-align: left;">
-                <h3 style="font-family: Caveat, cursive">Graduation Service Example</h3>
-                <img src="https://images.prismic.io/xudong-web/4c316364-423f-4ef8-90df-9c269e81888d_DDD-10.jpg?auto=compress,format"/>
+                </section>
             </section>
 
-            <section data-auto-animate>
-                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
-                <pre data-id="code-animation">
+            <section data-background-color="#301b3f">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Factory ?</h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #6c71c4;">
+                        an
+                        Factory is to provide a way to help create complex aggregates and to ensure the invariants for
+                        the client without exposing the concrete detailed objects to the client.
+                    </p>
+                </section>
+                <section>
+                    <img
+                        src="https://images.prismic.io/xudong-web/c1202118-d593-4718-b6df-68656b600d66_DDD-9.jpg?auto=compress,format" />
+                </section>
+                <section style="text-align: left;">
+                    <h3 style="font-family: Caveat, cursive">Graduation Service Example</h3>
+                    <img
+                        src="https://images.prismic.io/xudong-web/4c316364-423f-4ef8-90df-9c269e81888d_DDD-10.jpg?auto=compress,format" />
+                </section>
+
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
 							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="5|10|11|12">
                                 <script type="text/template">
                                 public class StudentFactory {
@@ -175,14 +261,15 @@
                                 </script>
 						</code>
 						</pre>
-            </section>
-            <section style="text-align: left;">
-                <h3 style="font-family: Caveat, cursive">Intention Revealing Interface</h3>
-                <img src="https://images.prismic.io/xudong-web/d7990deb-cccf-4821-abce-c1e0162a4430_DDD-11.jpg?auto=compress,format"/>
-            </section>
-            <section data-auto-animate>
-                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Refactoring</h2>
-                <pre data-id="code-animation">
+                </section>
+                <section style="text-align: left;">
+                    <h3 style="font-family: Caveat, cursive">Intention Revealing Interface</h3>
+                    <img
+                        src="https://images.prismic.io/xudong-web/d7990deb-cccf-4821-abce-c1e0162a4430_DDD-11.jpg?auto=compress,format" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Refactoring</h2>
+                    <pre data-id="code-animation">
 							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-3|4|14|25|37|40">
                                 <script type="text/template">
 public interface ModulePolicy {
@@ -232,30 +319,35 @@ public void register(Module newModule) {
                                 </script>
 						</code>
 						</pre>
+                </section>
             </section>
-        </section>
 
-        <section data-background-color="#046582">
-            <section>
-                <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Repository ?</h2>
-                <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #74a7cb;">an
-                    Factory is to provide a way to help create complex aggregates and to ensure the invariants for the client without exposing the concrete detailed objects to the client.
-                </p>
-            </section>
-            <section>
-                <h4 style="font-family: Caveat, cursive; margin-bottom: 40px;">Life cycle of an Entity</h4>
-                <img src="https://images.prismic.io/xudong-web/7732e96a-c4be-4d32-9782-39f9be90ffea_DDD-12.jpg?auto=compress,format"/>
-            </section>
-            <section>
-                <img src="https://images.prismic.io/xudong-web/db0e2ae7-e2ac-4c5f-97e9-a34ceed808e6_DDD-14.jpg?auto=compress,format"/>
-            </section>
-            <section style="text-align: left;">
-                <h3 style="font-family: Caveat, cursive">Graduation Service Example</h3>
-                <img src="https://images.prismic.io/xudong-web/3346d456-2e41-44c1-9f1e-f35dc46ef1e1_DDD-13.jpg?auto=compress,format"/>
-            </section>
-            <section data-auto-animate>
-                <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
-                <pre data-id="code-animation">
+            <section data-background-color="#046582">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">What is Repository ?</h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #74a7cb;">
+                        an
+                        Factory is to provide a way to help create complex aggregates and to ensure the invariants for
+                        the client without exposing the concrete detailed objects to the client.
+                    </p>
+                </section>
+                <section>
+                    <h4 style="font-family: Caveat, cursive; margin-bottom: 40px;">Life cycle of an Entity</h4>
+                    <img
+                        src="https://images.prismic.io/xudong-web/7732e96a-c4be-4d32-9782-39f9be90ffea_DDD-12.jpg?auto=compress,format" />
+                </section>
+                <section>
+                    <img
+                        src="https://images.prismic.io/xudong-web/db0e2ae7-e2ac-4c5f-97e9-a34ceed808e6_DDD-14.jpg?auto=compress,format" />
+                </section>
+                <section style="text-align: left;">
+                    <h3 style="font-family: Caveat, cursive">Graduation Service Example</h3>
+                    <img
+                        src="https://images.prismic.io/xudong-web/3346d456-2e41-44c1-9f1e-f35dc46ef1e1_DDD-13.jpg?auto=compress,format" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
 							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1|2-13|14-18|25|29">
                                 <script type="text/template">
 public class StudentRepository {
@@ -292,216 +384,217 @@ public class GraduationService {
                                 </script>
 						</code>
 						</pre>
+                </section>
             </section>
-        </section>
 
-        <section style="text-align: left">
-            <h1 style="font-family: Caveat, cursive; color:#FF5E99"> Any Questions? </h1>
-            <div style="font-size: 32px; padding: 10px 0 10px 40px; background-color: #7f9f7f; border-radius: 10px">
-                <div style="color:#ffaec0">Blogs:</div>
-                <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-1</div>
-                <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-2</div>
-                <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-3</div>
-                <div style="color:#ffaec0">Repo:</div>
-                <div style="margin-left: 20px">https://github.com/wooxudong/ddd-example</div>
-            </div>
-        </section>
+            <section style="text-align: left">
+                <h1 style="font-family: Caveat, cursive; color:#FF5E99"> Any Questions? </h1>
+                <div style="font-size: 32px; padding: 10px 0 10px 40px; background-color: #7f9f7f; border-radius: 10px">
+                    <div style="color:#ffaec0">Blogs:</div>
+                    <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-1</div>
+                    <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-2</div>
+                    <div style="margin-left: 20px">wooxudong.com/blog/domain-driven-design-3</div>
+                    <div style="color:#ffaec0">Repo:</div>
+                    <div style="margin-left: 20px">https://github.com/wooxudong/ddd-example</div>
+                </div>
+            </section>
+        </div>
+        <canvas id="canvas" style="z-index: -1"></canvas>
+        <div style="position:fixed; top: 15px; right: 20px; font-size: 12px">animation by <a
+                href="https://codepen.io/jackrugile/pen/bdwvMo">Jack Rugile</a></div>
+
     </div>
-    <canvas id="canvas" style="z-index: -1"></canvas>
-    <div style="position:fixed; top: 15px; right: 20px; font-size: 12px">animation by <a
-            href="https://codepen.io/jackrugile/pen/bdwvMo">Jack Rugile</a></div>
 
-</div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
 
-<script src="dist/reveal.js"></script>
-<script src="plugin/zoom/zoom.js"></script>
-<script src="plugin/search/search.js"></script>
-<script src="plugin/notes/notes.js"></script>
-<script src="plugin/markdown/markdown.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
-<script>
-    // More info about initialization & config:
-    // - https://revealjs.com/initialization/
-    // - https://revealjs.com/config/
-    Reveal.initialize({
-        controls: true,
-        progress: true,
-        center: true,
-        hash: true,
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+        });
+    </script>
 
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
-    });
-</script>
+    <script>
+        var canvas,
+            ctx,
+            width,
+            height,
+            size,
+            lines,
+            tick;
 
-<script>
-    var canvas,
-        ctx,
-        width,
-        height,
-        size,
-        lines,
-        tick;
-
-    function line() {
-        this.path = [];
-        this.speed = rand(10, 20);
-        this.count = randInt(10, 30);
-        this.x = width / 2, +1;
-        this.y = height / 2 + 1;
-        this.target = {x: width / 2, y: height / 2};
-        this.dist = 0;
-        this.angle = 0;
-        this.hue = tick / 5;
-        this.life = 1;
-        this.updateAngle();
-        this.updateDist();
-    }
-
-    line.prototype.step = function (i) {
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
-
-        this.updateDist();
-
-        if (this.dist < this.speed) {
-            this.x = this.target.x;
-            this.y = this.target.y;
-            this.changeTarget();
+        function line() {
+            this.path = [];
+            this.speed = rand(10, 20);
+            this.count = randInt(10, 30);
+            this.x = width / 2, +1;
+            this.y = height / 2 + 1;
+            this.target = { x: width / 2, y: height / 2 };
+            this.dist = 0;
+            this.angle = 0;
+            this.hue = tick / 5;
+            this.life = 1;
+            this.updateAngle();
+            this.updateDist();
         }
 
-        this.path.push({x: this.x, y: this.y});
-        if (this.path.length > this.count) {
-            this.path.shift();
+        line.prototype.step = function (i) {
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+
+            this.updateDist();
+
+            if (this.dist < this.speed) {
+                this.x = this.target.x;
+                this.y = this.target.y;
+                this.changeTarget();
+            }
+
+            this.path.push({ x: this.x, y: this.y });
+            if (this.path.length > this.count) {
+                this.path.shift();
+            }
+
+            this.life -= 0.001;
+
+            if (this.life <= 0) {
+                this.path = null;
+                lines.splice(i, 1);
+            }
+        };
+
+        line.prototype.updateDist = function () {
+            var dx = this.target.x - this.x,
+                dy = this.target.y - this.y;
+            this.dist = Math.sqrt(dx * dx + dy * dy);
         }
 
-        this.life -= 0.001;
-
-        if (this.life <= 0) {
-            this.path = null;
-            lines.splice(i, 1);
+        line.prototype.updateAngle = function () {
+            var dx = this.target.x - this.x,
+                dy = this.target.y - this.y;
+            this.angle = Math.atan2(dy, dx);
         }
-    };
 
-    line.prototype.updateDist = function () {
-        var dx = this.target.x - this.x,
-            dy = this.target.y - this.y;
-        this.dist = Math.sqrt(dx * dx + dy * dy);
-    }
+        line.prototype.changeTarget = function () {
+            var randStart = randInt(0, 3);
+            switch (randStart) {
+                case 0: // up
+                    this.target.y = this.y - size;
+                    break;
+                case 1: // right
+                    this.target.x = this.x + size;
+                    break;
+                case 2: // down
+                    this.target.y = this.y + size;
+                    break;
+                case 3: // left
+                    this.target.x = this.x - size;
+            }
+            this.updateAngle();
+        };
 
-    line.prototype.updateAngle = function () {
-        var dx = this.target.x - this.x,
-            dy = this.target.y - this.y;
-        this.angle = Math.atan2(dy, dx);
-    }
+        line.prototype.draw = function (i) {
+            ctx.beginPath();
+            var rando = rand(0, 10);
+            for (var j = 0, length = this.path.length; j < length; j++) {
+                ctx[(j === 0) ? 'moveTo' : 'lineTo'](this.path[j].x + rand(-rando, rando), this.path[j].y + rand(-rando, rando));
+            }
+            ctx.strokeStyle = 'hsla(' + rand(this.hue, this.hue + 30) + ', 80%, 55%, ' + (this.life / 3) + ')';
+            ctx.lineWidth = rand(0.1, 2);
+            ctx.stroke();
+        };
 
-    line.prototype.changeTarget = function () {
-        var randStart = randInt(0, 3);
-        switch (randStart) {
-            case 0: // up
-                this.target.y = this.y - size;
-                break;
-            case 1: // right
-                this.target.x = this.x + size;
-                break;
-            case 2: // down
-                this.target.y = this.y + size;
-                break;
-            case 3: // left
-                this.target.x = this.x - size;
+        function rand(min, max) {
+            return Math.random() * (max - min) + min;
         }
-        this.updateAngle();
-    };
 
-    line.prototype.draw = function (i) {
-        ctx.beginPath();
-        var rando = rand(0, 10);
-        for (var j = 0, length = this.path.length; j < length; j++) {
-            ctx[(j === 0) ? 'moveTo' : 'lineTo'](this.path[j].x + rand(-rando, rando), this.path[j].y + rand(-rando, rando));
+        function randInt(min, max) {
+            return Math.floor(min + Math.random() * (max - min + 1));
+        };
+
+        function init() {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            size = 30;
+            lines = [];
+            reset();
+            loop();
         }
-        ctx.strokeStyle = 'hsla(' + rand(this.hue, this.hue + 30) + ', 80%, 55%, ' + (this.life / 3) + ')';
-        ctx.lineWidth = rand(0.1, 2);
-        ctx.stroke();
-    };
 
-    function rand(min, max) {
-        return Math.random() * (max - min) + min;
-    }
+        function reset() {
+            width = Math.ceil(window.innerWidth / 2) * 2;
+            height = Math.ceil(window.innerHeight / 2) * 2;
+            tick = 0;
 
-    function randInt(min, max) {
-        return Math.floor(min + Math.random() * (max - min + 1));
-    };
-
-    function init() {
-        canvas = document.getElementById('canvas');
-        ctx = canvas.getContext('2d');
-        size = 30;
-        lines = [];
-        reset();
-        loop();
-    }
-
-    function reset() {
-        width = Math.ceil(window.innerWidth / 2) * 2;
-        height = Math.ceil(window.innerHeight / 2) * 2;
-        tick = 0;
-
-        lines.length = 0;
-        canvas.width = width;
-        canvas.height = height;
-    }
-
-    function create() {
-        if (tick % 10 === 0) {
-            lines.push(new line());
+            lines.length = 0;
+            canvas.width = width;
+            canvas.height = height;
         }
-    }
 
-    function step() {
-        var i = lines.length;
-        while (i--) {
-            lines[i].step(i);
+        function create() {
+            if (tick % 10 === 0) {
+                lines.push(new line());
+            }
         }
-    }
 
-    function clear() {
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1';
-        ctx.fillRect(0, 0, width, height);
-        ctx.globalCompositeOperation = 'lighter';
-    }
-
-    function draw() {
-        ctx.save();
-        ctx.translate(width / 2, height / 2);
-        ctx.rotate(tick * 0.001);
-        var scale = 0.8 + Math.cos(tick * 0.02) * 0.2;
-        ctx.scale(scale, scale);
-        ctx.translate(-width / 2, -height / 2);
-        var i = lines.length;
-        while (i--) {
-            lines[i].draw(i);
+        function step() {
+            var i = lines.length;
+            while (i--) {
+                lines[i].step(i);
+            }
         }
-        ctx.restore();
-    }
 
-    function loop() {
-        requestAnimationFrame(loop);
-        create();
-        step();
-        clear();
-        draw();
-        tick++;
-    }
+        function clear() {
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1';
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'lighter';
+        }
 
-    function onresize() {
-        reset();
-    }
+        function draw() {
+            ctx.save();
+            ctx.translate(width / 2, height / 2);
+            ctx.rotate(tick * 0.001);
+            var scale = 0.8 + Math.cos(tick * 0.02) * 0.2;
+            ctx.scale(scale, scale);
+            ctx.translate(-width / 2, -height / 2);
+            var i = lines.length;
+            while (i--) {
+                lines[i].draw(i);
+            }
+            ctx.restore();
+        }
 
-    window.addEventListener('resize', onresize);
+        function loop() {
+            requestAnimationFrame(loop);
+            create();
+            step();
+            clear();
+            draw();
+            tick++;
+        }
 
-    init();
-</script>
+        function onresize() {
+            reset();
+        }
+
+        window.addEventListener('resize', onresize);
+
+        init();
+    </script>
 
 </body>
+
 </html>
