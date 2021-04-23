@@ -127,6 +127,48 @@
                     </ol>
                 </section>
                 <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">How to identify Entity?</h2>
+                    <ol>
+                        If domain expert emphasize on:
+                        <li style="text-decoration: underline burlywood; margin-bottom: 40px "> identification</li>
+                        <li style="text-decoration: underline burlywood;"> life cycle, such as "Student's application for course is submitted", "The application is approved", "The application is rejected"</li>
+                    </ol>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Code Example</h2>
+                    <pre data-id="code-animation">
+                        <code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1-2|4-5|7|10|15-26">
+                            <script type="text/template">
+                                public interface Identifier {
+                                }
+                                
+                                public interface Entity<ID extends Identifier> {
+                                }
+
+                                public class StaffId implements Identifier {
+                                    private final String staffId;
+                                
+                                    public StaffId(String staffId) {
+                                        staffId = id;
+                                    }
+                                }
+                                
+                                public class Teacher implements Entity<StaffId> {
+                                    private final String name;
+                                    private final Email email;
+
+
+                                    public Teacher(String name, Email email) {
+                                        super(new StaffId("some-random-id"));
+                                        this.name = name ; 
+                                        this.email = email; 
+                                    }
+                                }   
+                            </script>
+                    </code>
+                    </pre>
+                </section>
+                <section>
                     <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">Value Object</h2>
                     <ol>
                         <li style="text-decoration: underline burlywood; margin-bottom: 20px">Defined by its attributes
