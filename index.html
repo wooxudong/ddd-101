@@ -285,12 +285,89 @@
                             But if it's electricity, it is an Entity!
                         </li>
                         <li class="fragment" style="margin-bottom: 40px;border-bottom: 2px solid #0d99a5;">
-                            Equality operation for both varies. 
+                            Equality operation for both varies.
                         </li>
                     </ol>
                 </section>
             </section>
 
+
+            <section data-background-color="#536162">
+                <section>
+                    <h2 style="font-family: Caveat, cursive; margin-bottom: 40px;">
+                        What is Domain Service?
+                    </h2>
+                    <p style="text-align: left; padding: 10px; border-left:6px solid white; background-color: #0d99a5;">
+                        Represent behaviour<br />
+                        No Identity and hence Stateless<br />
+                        orchestrate multiple entities or domain objects<br />
+                    </p>
+                </section>
+
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> How to identify Domain Service? </h2>
+                    <ol>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            An operation / action which involves more than one entity
+                        </li>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            The behaviour can not be owned by single entity or value object.
+                        </li>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            Encapsulation of business process and policies which involes more than ine entity / value
+                            object.
+                        </li>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            Contract: concept is for domain, implementation is in infra layer.
+                        </li>
+                    </ol>
+                </section>
+
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Domain service example</h2>
+                    <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1|5-11">
+                                <script type="text/template">
+                                    public class  CourseApplicationService{
+
+                                        ...
+
+                                        public boolean apply(Student student, Course course){
+                                            if (student.canApply(course)) {
+                                                student.apply(course);
+                                                 return true;
+                                             }
+                                             return false;
+                                        }
+                                        ...
+                                    }
+                                </script>
+						</code>
+						</pre>
+                </section>
+
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> Application Service </h2>
+                    <ol>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            Do not contain business rules
+                        </li>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            Do not represent Business domain
+                        </li>
+                        <li class="fragment" style="margin-bottom: 20px;border-bottom: 2px solid #0d99a5;">
+                            eg. Infrastructure concerns such as notification, sending email or making http call.
+                        </li>
+                    </ol>
+                </section>
+
+
+                <section>
+                    <h2 style="font-family: Caveat, cursive"> TODO: Priti | Diagram for layered service with concerns,
+                        present in Blue book. </h2>
+                </section>
+
+            </section>
 
 
             <section data-background-color="#536162">
