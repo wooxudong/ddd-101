@@ -251,13 +251,37 @@
                         style="font-family: Caveat, cursive; margin-bottom: 40px;text-align: left;text-decoration: overline yellow">
                         Use Case</h2>
                     <p style="font-size: 60px; text-align: left">
-                        Before a new term starts, students will <span style="color: #cdc733; font-weight: bolder"> place
-                            points </span> to bid for new courses.
+                        Student can <span style="color: #cdc733; font-weight: bolder"> apply
+                        </span> for new course and it will be assigned to student if eligibility criteria is met.
                     </p>
                 </section>
                 <section>
+                    <h2> Update the diagram</h2>
                     <img
                         src="https://images.prismic.io/xudong-web/b3b9dbca-b94b-47ba-9197-fa02ee866a42_service.jpg?auto=compress,format" />
+                </section>
+
+                <section data-auto-animate>
+                    <h2 data-id="code-title" style="font-family: Caveat, cursive">Domain service example</h2>
+                    <pre data-id="code-animation">
+							<code class="hljs" style="font-size:15px;tab-size: 15px" data-trim data-line-numbers="1|5-11">
+                                <script type="text/template">
+                                    public class  CourseApplicationService{
+
+                                        ...
+
+                                        public boolean apply(Student student, Course course){
+                                            if (student.canApply(course)) {
+                                                student.apply(course);
+                                                 return true;
+                                             }
+                                             return false;
+                                        }
+                                        ...
+                                    }
+                                </script>
+						</code>
+						</pre>
                 </section>
             </section>
 
